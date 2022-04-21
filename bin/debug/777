@@ -1,0 +1,14 @@
+<!DOCTYPE WorkerInformation>
+<Worker>
+ <ID_worker>777</ID_worker>
+ <Surname>Войтех</Surname>
+ <FirstName>Микола</FirstName>
+ <LastName>Юрійович</LastName>
+ <PhoneNumber>+380961884790</PhoneNumber>
+ <Email>kolyavojteh2@gmail.com</Email>
+ <Position>BOP</Position>
+ <Position>DVS</Position>
+ <Position>KIT</Position>
+ <Position>MDS</Position>
+ <Position>SER</Position>
+</Worker>
