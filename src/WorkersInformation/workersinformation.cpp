@@ -50,6 +50,11 @@ WorkersInformation::WorkersInformation(const QString filename, QWidget *parent)
     openFile(filename);
 }
 
+void WorkersInformation::slotSetDefaulPath(const QString& path)
+{
+    m_defaultPath = path;
+}
+
 Worker WorkersInformation::getInformationFromForm()
 {
     Worker info;
@@ -79,7 +84,7 @@ void WorkersInformation::slotSave()
 
     Worker info = getInformationFromForm();
 
-    typedef void (*func_writeWorkerToFile)(QString, Worker);
+    typedef void (*func_writeWorkerToFile)(const QString&, const Worker&);
     QLibrary xmlParser("XML_Parsing");
     func_writeWorkerToFile writeWorker = (func_writeWorkerToFile)xmlParser.resolve("write_WorkerInfoToFile");
 
@@ -182,7 +187,7 @@ void WorkersInformation::openFile(const QString & filename)
     m_filename = filename;
 
     // Завантаження даних про робітника із файлу
-    typedef Worker (*func_readWorker)(QString);
+    typedef Worker (*func_readWorker)(const QString&);
     QLibrary xmlParser("XML_Parsing");
     func_readWorker readWorker = (func_readWorker)xmlParser.resolve("read_WorkerInfoFromFile");
 
@@ -196,6 +201,7 @@ void WorkersInformation::openFile(const QString & filename)
     ui->p_line_PhoneNumber->setText(info.PhoneNumber);
     ui->p_line_Email->setText(info.Email);
 
+    ui->p_list_Positions->clear();
     ui->p_list_Positions->addItems(info.ListPositions);
     for (int n_elem = 0; n_elem < ui->p_list_Positions->count(); n_elem++)
     {

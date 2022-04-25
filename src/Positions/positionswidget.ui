@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PositionsWidget</class>
+ <widget class="QWidget" name="PositionsWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>579</width>
+    <height>397</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>PositionsWidget</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_2">
+   <item row="0" column="0">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>List of positions</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QListWidget" name="p_list_Positions"/>
+        </item>
+        <item>
+         <widget class="QPushButton" name="p_button_AddPosition">
+          <property name="text">
+           <string>Add</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="p_button_DeletePosition">
+          <property name="text">
+           <string>Delete</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="title">
+      <string>Single position</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="2" column="1">
+       <widget class="QPlainTextEdit" name="p_textEdit_Description"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="p_lbl_FullName">
+        <property name="text">
+         <string>Full name</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="p_line_FullName"/>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="p_line_Brief"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="p_lbl_Description">
+        <property name="text">
+         <string>Description</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="p_lbl_Brief">
+        <property name="text">
+         <string>Brief</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0" colspan="2">
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="2">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="p_button_CreateNew">
+       <property name="text">
+        <string>Create new...</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="p_button_Open">
+       <property name="text">
+        <string>Open...</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="p_button_Save">
+       <property name="text">
+        <string>Save</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="p_button_SaveAs">
+       <property name="text">
+        <string>Save as...</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>p_line_Brief</tabstop>
+  <tabstop>p_line_FullName</tabstop>
+  <tabstop>p_textEdit_Description</tabstop>
+  <tabstop>p_list_Positions</tabstop>
+  <tabstop>p_button_AddPosition</tabstop>
+  <tabstop>p_button_DeletePosition</tabstop>
+  <tabstop>p_button_CreateNew</tabstop>
+  <tabstop>p_button_Open</tabstop>
+  <tabstop>p_button_Save</tabstop>
+  <tabstop>p_button_SaveAs</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

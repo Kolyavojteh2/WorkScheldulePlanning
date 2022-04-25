@@ -48,5 +48,7 @@ public slots:
     void slotDeletePosition();
     void slotContextMenu(const QPoint&);
     void slotChangeWindowTitle(const QString&);
+
+    void slotSetDefaulPath(const QString&);
 };
 #endif // WORKERSINFORMATION_H

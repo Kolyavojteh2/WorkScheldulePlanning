@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ProjectLocationWidget</class>
+ <widget class="QWidget" name="ProjectLocationWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>543</width>
+    <height>325</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>ProjectLocationWidget</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>Folders location</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="6" column="1">
+       <widget class="QLineEdit" name="p_line_PositionsLocation"/>
+      </item>
+      <item row="2" column="2">
+       <widget class="QToolButton" name="p_button_WorkersInformationLocation">
+        <property name="text">
+         <string>...</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="p_lbl_WorkGraphicLocation">
+        <property name="minimumSize">
+         <size>
+          <width>200</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Work graphics</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QToolButton" name="p_button_WishesWorkersLocation">
+        <property name="text">
+         <string>...</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="p_line_WishesWorkersLocation"/>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="p_lbl_WorkerGraphicLocation">
+        <property name="minimumSize">
+         <size>
+          <width>200</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Worker graphics</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="2">
+       <widget class="QToolButton" name="p_button_WorkerGraphicLocation">
+        <property name="text">
+         <string>...</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="2">
+       <widget class="QToolButton" name="p_button_PositionsLocation">
+        <property name="text">
+         <string>...</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="p_lbl_PositionsLocation">
+        <property name="minimumSize">
+         <size>
+          <width>200</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Positions</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLineEdit" name="p_line_VacationInformationLocation"/>
+      </item>
+      <item row="0" column="2">
+       <widget class="QToolButton" name="p_button_RequirementsLocation">
+        <property name="text">
+         <string>...</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="2">
+       <widget class="QToolButton" name="p_button_VacationInformationLocation">
+        <property name="text">
+         <string>...</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="p_lbl_WorkersInformationLocation">
+        <property name="minimumSize">
+         <size>
+          <width>200</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Information of workers</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="p_lbl_RequirementsLocation">
+        <property name="minimumSize">
+         <size>
+          <width>200</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Requirements</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="2">
+       <widget class="QToolButton" name="p_button_WorkGraphicLocation">
+        <property name="text">
+         <string>...</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QLineEdit" name="p_line_WorkerGraphicLocation"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="p_lbl_WishesWorkersLocation">
+        <property name="minimumSize">
+         <size>
+          <width>200</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Wishes</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="p_line_RequirementsLocation"/>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="p_lbl_VacationInformationLocation">
+        <property name="minimumSize">
+         <size>
+          <width>200</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Information of vacations</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="p_line_WorkersInformationLocation"/>
+      </item>
+      <item row="4" column="1">
+       <widget class="QLineEdit" name="p_line_WorkGraphicLocation"/>
+      </item>
+      <item row="7" column="0" colspan="2">
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="p_button_Open">
+       <property name="text">
+        <string>Open...</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="p_button_Save">
+       <property name="text">
+        <string>Save</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="p_button_SaveAs">
+       <property name="text">
+        <string>Save as...</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>p_line_RequirementsLocation</tabstop>
+  <tabstop>p_line_WishesWorkersLocation</tabstop>
+  <tabstop>p_line_WorkersInformationLocation</tabstop>
+  <tabstop>p_line_VacationInformationLocation</tabstop>
+  <tabstop>p_line_WorkGraphicLocation</tabstop>
+  <tabstop>p_line_WorkerGraphicLocation</tabstop>
+  <tabstop>p_line_PositionsLocation</tabstop>
+  <tabstop>p_button_RequirementsLocation</tabstop>
+  <tabstop>p_button_WishesWorkersLocation</tabstop>
+  <tabstop>p_button_WorkersInformationLocation</tabstop>
+  <tabstop>p_button_VacationInformationLocation</tabstop>
+  <tabstop>p_button_WorkGraphicLocation</tabstop>
+  <tabstop>p_button_WorkerGraphicLocation</tabstop>
+  <tabstop>p_button_PositionsLocation</tabstop>
+  <tabstop>p_button_Open</tabstop>
+  <tabstop>p_button_Save</tabstop>
+  <tabstop>p_button_SaveAs</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

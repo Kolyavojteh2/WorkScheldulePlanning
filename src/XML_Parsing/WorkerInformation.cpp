@@ -65,7 +65,7 @@ QDomElement makeElement(QDomDocument& doc, const QString &tagName, const QString
 }
 
 // EXPORT
-Worker read_WorkerInfoFromFile(const QString filename)
+Worker read_WorkerInfoFromFile(const QString& filename)
 {
     QDomDocument doc;
     QFile file(filename);
@@ -75,6 +75,9 @@ Worker read_WorkerInfoFromFile(const QString filename)
     {
         if (doc.setContent(&file))
         {
+            if (doc.doctype().name() != "WorkerInformation")
+                return info;
+
             QDomElement domElement = doc.documentElement();
             info = traverseNodeWorker(domElement, info);
         }
@@ -85,7 +88,7 @@ Worker read_WorkerInfoFromFile(const QString filename)
 }
 
 // EXPORT
-void write_WorkerInfoToFile(const QString filename, const Worker info)
+void write_WorkerInfoToFile(const QString& filename, const Worker& info)
 {
     QDomDocument doc("WorkerInformation");
     QDomElement rootElem = doc.createElement("Worker");

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>350</width>
+    <width>409</width>
     <height>408</height>
    </rect>
   </property>
@@ -181,7 +181,9 @@
   <tabstop>p_line_LastName</tabstop>
   <tabstop>p_line_PhoneNumber</tabstop>
   <tabstop>p_line_Email</tabstop>
+  <tabstop>p_list_Positions</tabstop>
   <tabstop>p_button_NewWorker</tabstop>
+  <tabstop>p_button_Open</tabstop>
   <tabstop>p_button_Close</tabstop>
   <tabstop>p_button_Save</tabstop>
  </tabstops>

@@ -15,7 +15,7 @@ public:
     QString Email;
     QList<QString> ListPositions;
 
-    bool operator==(Worker r)
+    bool operator==(const Worker& r) const
     {
         if (ID_worker == r.ID_worker &&
                 Surname == r.Surname &&
@@ -28,7 +28,7 @@ public:
         return false;
     }
 
-    bool operator!=(Worker r)
+    bool operator!=(const Worker& r) const
     {
         if(*this == r)
             return false;

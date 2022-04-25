@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>VacationWidget</class>
+ <widget class="QWidget" name="VacationWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>482</width>
+    <height>386</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>VacationWidget</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_2">
+   <item row="0" column="0">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>List of vacations</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QListWidget" name="p_list_Vacations"/>
+      </item>
+      <item>
+       <widget class="QPushButton" name="p_button_AddVacation">
+        <property name="text">
+         <string>Add</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="p_button_DeleteVacation">
+        <property name="text">
+         <string>Delete</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="title">
+      <string>Single vacation</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="5" column="0">
+       <widget class="QLabel" name="p_lbl_StartDate">
+        <property name="text">
+         <string>Start date</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLineEdit" name="p_line_FirstName">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="p_lbl_FirstName">
+        <property name="text">
+         <string>First name</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="p_lbl_Surname">
+        <property name="text">
+         <string>Surname</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="p_lbl_LastName">
+        <property name="text">
+         <string>Last name</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="p_lbl_EndDate">
+        <property name="text">
+         <string>End date</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="p_lbl_ID_Worker">
+        <property name="text">
+         <string>ID worker</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="QDateEdit" name="p_dateEdit_EndDate">
+        <property name="wrapping">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="p_line_ID_Worker"/>
+      </item>
+      <item row="4" column="1">
+       <widget class="QLineEdit" name="p_line_LastName">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="p_line_Surname">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="0" colspan="2">
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="5" column="1">
+       <widget class="QDateEdit" name="p_dateEdit_StartDate">
+        <property name="wrapping">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="p_lbl_ID_Vacation">
+        <property name="text">
+         <string>ID vacation</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="p_line_ID_Vacation"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="2">
+    <layout class="QHBoxLayout" name="p_layout_navigationButtons">
+     <item>
+      <widget class="QPushButton" name="p_button_CreateNew">
+       <property name="text">
+        <string>Create new...</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="p_button_Open">
+       <property name="text">
+        <string>Open...</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="p_button_Save">
+       <property name="text">
+        <string>Save</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="p_button_SaveAs">
+       <property name="text">
+        <string>Save as...</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>p_line_ID_Worker</tabstop>
+  <tabstop>p_line_Surname</tabstop>
+  <tabstop>p_line_FirstName</tabstop>
+  <tabstop>p_line_LastName</tabstop>
+  <tabstop>p_dateEdit_StartDate</tabstop>
+  <tabstop>p_dateEdit_EndDate</tabstop>
+  <tabstop>p_list_Vacations</tabstop>
+  <tabstop>p_button_AddVacation</tabstop>
+  <tabstop>p_button_DeleteVacation</tabstop>
+  <tabstop>p_button_CreateNew</tabstop>
+  <tabstop>p_button_Open</tabstop>
+  <tabstop>p_button_Save</tabstop>
+  <tabstop>p_button_SaveAs</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

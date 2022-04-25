@@ -17,15 +17,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     main.cpp \
-    workerinfo.cpp
+    positionswidget.cpp
 
 HEADERS += \
-    workerinfo.h
+    positionswidget.h
 
 FORMS += \
-    workerinfo.ui
+    positionswidget.ui
+
+include(../../common.pri)
+include(../../app.pri)
+
+LIBS += -lXML_Parsing
 
 # Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target
+# qnx: target.path = /tmp/$${TARGET}/bin
+# else: unix:!android: target.path = /opt/$${TARGET}/bin
+# !isEmpty(target.path): INSTALLS += target

@@ -1,11 +1,6 @@
-include(../../common.pri)
-include(../../lib.pri)
+QT       += core gui
 
-QT -= gui
-QT += xml
-
-TEMPLATE = lib
-DEFINES += XML_PARSING_LIBRARY
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
 
@@ -21,27 +16,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    PositionInformation.cpp \
-    ProjectLocationsInformation.cpp \
-    ProjectSetupInformation.cpp \
-    RequirementInformation.cpp \
-    VacationsInformation.cpp \
-    WishesInformation.cpp \
-    WorkerInformation.cpp
+    main.cpp \
+    projectsetupwidget.cpp
 
 HEADERS += \
-    Positions.h \
-    ProjectLocations.h \
-    ProjectSetup.h \
-    SingleRequirement.h \
-    SingleVacation.h \
-    SingleWish.h \
-    Worker.h \
-    XML_Parsing_global.h \
-    xml_parsing.h
+    projectsetupwidget.h
+
+FORMS += \
+    projectsetupwidget.ui
+
+include(../../common.pri)
+include(../../app.pri)
+
+LIBS += -lXML_Parsing
 
 # Default rules for deployment.
-unix {
-    target.path = /usr/lib
-}
-!isEmpty(target.path): INSTALLS += target
+# qnx: target.path = /tmp/$${TARGET}/bin
+# else: unix:!android: target.path = /opt/$${TARGET}/bin
+# !isEmpty(target.path): INSTALLS += target
