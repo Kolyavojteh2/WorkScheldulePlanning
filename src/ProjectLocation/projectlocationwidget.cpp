@@ -80,6 +80,9 @@ void ProjectLocationWidget::slotGetDirPath(QWidget* wgt)
     QString str = QFileDialog::getExistingDirectory(this,
                                                     tr("Choise directory..."),
                                                     "./");
+    if (str.isEmpty())
+        return;
+
     QLineEdit *line = dynamic_cast<QLineEdit*>(wgt);
     if (line)
         line->setText(str);

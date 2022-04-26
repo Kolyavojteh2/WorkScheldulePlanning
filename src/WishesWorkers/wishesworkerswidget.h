@@ -30,6 +30,7 @@ private:
     int findLastIDInList();
     void openFile(const QString&);
     void loadPositions();
+
 protected:
     void closeEvent(QCloseEvent *event) override;
 

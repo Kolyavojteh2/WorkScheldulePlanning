@@ -68,6 +68,26 @@ PositionsWidget::~PositionsWidget()
     delete ui;
 }
 
+int PositionsWidget::findLastNumberUnnamedPosition()
+{
+    int number = 0;
+    for (int i = 0; i < ui->p_list_Positions->count(); i++)
+    {
+        if (ui->p_list_Positions->item(i)->text().indexOf("Unnamed position") == -1)
+            continue;
+        else
+        {
+            QString str = ui->p_list_Positions->item(i)->text();
+            str.remove(0, QString("Unnamed position").count());
+
+            if (number < str.toInt())
+                number = str.toInt();
+        }
+    }
+
+    return number;
+}
+
 void PositionsWidget::slotUpdateBrief()
 {
     auto iter_currentPosition = m_currentPositions.list.find(m_currentEditPositionName);
@@ -75,6 +95,22 @@ void PositionsWidget::slotUpdateBrief()
         return;
 
     QString newBrief = ui->p_line_Brief->text();
+
+    // Пошук одинакових коротких імен і якщо знайдено, то присвоїти дефолтний
+    if (m_currentEditPositionName != newBrief)
+    {
+        for (auto it = m_currentPositions.list.begin(); it != m_currentPositions.list.end(); it++)
+        {
+            if (newBrief == it.value().Brief)
+            {
+                newBrief = "Unnamed position " + QString::number(findLastNumberUnnamedPosition() + 1);
+                ui->p_line_Brief->setText(newBrief);
+                break;
+            }
+        }
+    }
+    //
+
     iter_currentPosition.value().Brief = newBrief;
 
     if (iter_currentPosition.value().Brief == iter_currentPosition.key())

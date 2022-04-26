@@ -30,3 +30,10 @@
 1. 	Створено інтерфейси Positions, ProjectLocations, ProjectSetup, Requirements VacationInformation, WishesWorkers.
 2.	Створено функції для зчитування та запису інформації в XML-форматі для вище зазначених інтерфейсів.
 3. 	Створено зв'язок між інтерфейсами та основними функціями програм.
+
+=== Version 0.3.0 ===
+BugFixes
+
+1. 	В класах Positions, Requirements, VacationInformation виправлено дублювання унікальних ідентифікаторів у списках.
+2. 	В класі ProjectLocations виправлено помилку із очисткою старого шляху, якщо при виборі нового було натиснено відміну.
+

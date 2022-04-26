@@ -302,6 +302,22 @@ void RequirementWidget::slotUpdateData(const QString& attributeName)
             return;
 
         QString newID_Requirement = ui->p_line_ID->text();
+
+        // Пошук одинакових ID і якщо знайдено, то присвоїти дефолтний
+        if (m_currentEditRequirement.toInt() != newID_Requirement.toInt())
+        {
+            for (auto it = m_requirements.begin(); it != m_requirements.end(); it++)
+            {
+                if (newID_Requirement.toInt() == it.value().ID)
+                {
+                    newID_Requirement = QString::number(findLastIDInList() + 1);
+                    ui->p_line_ID->setText(newID_Requirement);
+                    break;
+                }
+            }
+        }
+        //
+
         iter_currentRequirement.value().ID = newID_Requirement.toInt();
 
         if (QString::number(iter_currentRequirement.value().ID) == iter_currentRequirement.key())

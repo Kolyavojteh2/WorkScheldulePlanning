@@ -225,6 +225,20 @@ void VacationWidget::slotUpdateData(const QString& attributeName)
             return;
 
         QString newID_vacation = ui->p_line_ID_Vacation->text();
+        // Пошук одинакових ID і якщо знайдено, то присвоїти дефолтний
+        if (m_currentEditVacationName.toInt() != newID_vacation.toInt())
+        {
+            for (auto it = m_vacations.begin(); it != m_vacations.end(); it++)
+            {
+                if (newID_vacation.toInt() == it.value().ID_vacation)
+                {
+                    newID_vacation = QString::number(findLastIDInList() + 1);
+                    ui->p_line_ID_Vacation->setText(newID_vacation);
+                    break;
+                }
+            }
+        }
+        //
         iter_currentVacation.value().ID_vacation = newID_vacation.toInt();
 
         if (QString::number(iter_currentVacation.value().ID_vacation) == iter_currentVacation.key())

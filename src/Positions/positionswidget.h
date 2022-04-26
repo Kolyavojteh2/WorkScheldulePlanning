@@ -28,6 +28,8 @@ private:
     void resetData();
     void validateData();
 
+    int findLastNumberUnnamedPosition();
+
 private:
     Ui::PositionsWidget *ui;
 
