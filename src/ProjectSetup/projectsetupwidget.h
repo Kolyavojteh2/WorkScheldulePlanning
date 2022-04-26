@@ -32,6 +32,8 @@ private:
     QString m_filename;
     bool isModifiedFile = false;
 
+    QString m_defaultPath;
+
 public slots:
     void slotRoundTheClockModeChanged(int);
     void slotEveryMounthGraphicChanged(int);
@@ -46,6 +48,8 @@ public slots:
     void slotSaveAs();
 
     void slotShowNavigationButtons(bool showState);
+
+    void slotSetDefaulPath(const QString&);
 
 };
 #endif // PROJECTSETUPWIDGET_H

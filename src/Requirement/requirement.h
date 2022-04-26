@@ -42,6 +42,7 @@ private:
     Requirements m_requirements;
     QString m_currentEditRequirement;
 
+    QString m_defaultPath;
     QString m_pathPositionsInformation;
 
     QString m_filename;
@@ -64,6 +65,7 @@ public slots:
 
     void slotUpdateData(const QString&);
 
+    void slotSetDefaulPath(const QString&);
     void slotSetPathPositionsInformation(const QString&);
 
     void slotShowNavigationButtons(bool showState);

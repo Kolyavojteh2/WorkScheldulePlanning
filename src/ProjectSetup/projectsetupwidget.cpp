@@ -149,7 +149,7 @@ void ProjectSetupWidget::slotOpen()
         {
             QString str = QFileDialog::getOpenFileName(this,
                                                        "Open...",
-                                                       "",
+                                                       m_defaultPath,
                                                        "*.xml");
             openFile(str);
         }
@@ -159,7 +159,7 @@ void ProjectSetupWidget::slotOpen()
 
             QString str = QFileDialog::getOpenFileName(this,
                                                        "Open...",
-                                                       "",
+                                                       m_defaultPath,
                                                        "*.xml");
             openFile(str);
         }
@@ -168,7 +168,7 @@ void ProjectSetupWidget::slotOpen()
     {
         QString str = QFileDialog::getOpenFileName(this,
                                                    "Open...",
-                                                   "",
+                                                   m_defaultPath,
                                                    "*.xml");
         openFile(str);
     }
@@ -210,7 +210,7 @@ void ProjectSetupWidget::slotSave()
 
 void ProjectSetupWidget::slotSaveAs()
 {
-    QString str = QFileDialog::getSaveFileName(this, "Save as...", "");
+    QString str = QFileDialog::getSaveFileName(this, "Save as...", m_defaultPath, "*.xml");
     if (!str.isEmpty())
     {
         m_filename = str;
@@ -248,4 +248,9 @@ void ProjectSetupWidget::closeEvent(QCloseEvent *event)
     {
         event->accept();
     }
+}
+
+void ProjectSetupWidget::slotSetDefaulPath(const QString& path)
+{
+    m_defaultPath = path;
 }

@@ -41,6 +41,7 @@ private:
     QString m_currentEditWish;
     Positions m_positions;
 
+    QString m_defaultPath;
     QString m_pathWorkersInformation;
     QString m_pathPositionsInformation;
 
@@ -66,6 +67,7 @@ public slots:
     void slotSave();
     void slotSaveAs();
 
+    void slotSetDefaulPath(const QString&);
     void slotSetPathWorkersInformation(const QString&);
     void slotSetPathPositionsInformation(const QString&);
 

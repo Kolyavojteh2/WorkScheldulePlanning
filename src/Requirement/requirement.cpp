@@ -406,7 +406,7 @@ void RequirementWidget::slotOpen()
         {
             QString str = QFileDialog::getOpenFileName(this,
                                                        "Open...",
-                                                       "",
+                                                       m_defaultPath,
                                                        "*.xml");
             openFile(str);
         }
@@ -416,7 +416,7 @@ void RequirementWidget::slotOpen()
 
             QString str = QFileDialog::getOpenFileName(this,
                                                        "Open...",
-                                                       "",
+                                                       m_defaultPath,
                                                        "*.xml");
             openFile(str);
         }
@@ -425,7 +425,7 @@ void RequirementWidget::slotOpen()
     {
         QString str = QFileDialog::getOpenFileName(this,
                                                    "Open...",
-                                                   "",
+                                                   m_defaultPath,
                                                    "*.xml");
         openFile(str);
     }
@@ -474,7 +474,7 @@ void RequirementWidget::slotSave()
 
 void RequirementWidget::slotSaveAs()
 {
-    QString str = QFileDialog::getSaveFileName(this, "Save as...", "");
+    QString str = QFileDialog::getSaveFileName(this, "Save as...", m_defaultPath, "*.xml");
     if (!str.isEmpty())
     {
         m_filename = str;
@@ -548,4 +548,9 @@ void RequirementWidget::slotShowNavigationButtons(bool showState)
     {
         ui->p_layout_navigationButtons->itemAt(i)->widget()->setVisible(showState);
     }
+}
+
+void RequirementWidget::slotSetDefaulPath(const QString& path)
+{
+    m_defaultPath = path;
 }

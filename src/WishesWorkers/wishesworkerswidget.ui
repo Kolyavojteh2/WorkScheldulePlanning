@@ -96,30 +96,23 @@
       <string>Single wish</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
-      <item row="2" column="0">
-       <widget class="QLabel" name="p_lbl_EndDate">
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="p_line_ID_wishes"/>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="p_lbl_Position">
         <property name="text">
-         <string>EndDate</string>
+         <string>Position</string>
         </property>
        </widget>
       </item>
-      <item row="5" column="0">
-       <widget class="QLabel" name="p_lbl_MinWorkerDays">
-        <property name="text">
-         <string>Minimum number of working days</string>
-        </property>
-        <property name="wordWrap">
+      <item row="4" column="1">
+       <widget class="QPlainTextEdit" name="p_TextEdit_Addition"/>
+      </item>
+      <item row="1" column="1">
+       <widget class="QDateTimeEdit" name="p_dateTimeEdit_StartDate">
+        <property name="wrapping">
          <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="1">
-       <widget class="QSpinBox" name="p_spinBox_MinWorkerDays">
-        <property name="minimum">
-         <number>1</number>
-        </property>
-        <property name="maximum">
-         <number>7</number>
         </property>
        </widget>
       </item>
@@ -130,20 +123,6 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="p_lbl_StartDate">
-        <property name="text">
-         <string>Start date</string>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="1">
-       <widget class="QTimeEdit" name="p_timeEdit_GetStartedLaterThan">
-        <property name="wrapping">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
       <item row="2" column="1">
        <widget class="QDateTimeEdit" name="p_dateTimeEdit_EndDate">
         <property name="wrapping">
@@ -151,84 +130,7 @@
         </property>
        </widget>
       </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="p_lbl_Position">
-        <property name="text">
-         <string>Position</string>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="0">
-       <widget class="QLabel" name="p_lbl_MaxWorkerDays">
-        <property name="text">
-         <string>Maximum number of working days</string>
-        </property>
-        <property name="wordWrap">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="1">
-       <widget class="QSpinBox" name="p_spinBox_MaxWorkerDays">
-        <property name="minimum">
-         <number>1</number>
-        </property>
-        <property name="maximum">
-         <number>7</number>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="QComboBox" name="p_comboBox_Position"/>
-      </item>
-      <item row="4" column="0">
-       <widget class="QLabel" name="p_lbl_Addition">
-        <property name="text">
-         <string>Addition</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QLineEdit" name="p_line_ID_wishes"/>
-      </item>
-      <item row="7" column="0">
-       <widget class="QLabel" name="p_lbl_GetStartedLaterThan">
-        <property name="text">
-         <string>Start work not earlier ...</string>
-        </property>
-        <property name="wordWrap">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="8" column="0">
-       <widget class="QLabel" name="p_lbl_GetEndEarlierThan">
-        <property name="text">
-         <string>End of work no later than ...</string>
-        </property>
-        <property name="wordWrap">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="8" column="1">
-       <widget class="QTimeEdit" name="p_timeEdit_GetEndEarlierThan">
-        <property name="wrapping">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QDateTimeEdit" name="p_dateTimeEdit_StartDate">
-        <property name="wrapping">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="1">
-       <widget class="QPlainTextEdit" name="p_TextEdit_Addition"/>
-      </item>
-      <item row="9" column="0">
+      <item row="5" column="0">
        <spacer name="verticalSpacer">
         <property name="orientation">
          <enum>Qt::Vertical</enum>
@@ -240,6 +142,30 @@
          </size>
         </property>
        </spacer>
+      </item>
+      <item row="3" column="1">
+       <widget class="QComboBox" name="p_comboBox_Position"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="p_lbl_StartDate">
+        <property name="text">
+         <string>Start date</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="p_lbl_Addition">
+        <property name="text">
+         <string>Addition</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="p_lbl_EndDate">
+        <property name="text">
+         <string>EndDate</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -314,10 +240,6 @@
   <tabstop>p_dateTimeEdit_EndDate</tabstop>
   <tabstop>p_comboBox_Position</tabstop>
   <tabstop>p_TextEdit_Addition</tabstop>
-  <tabstop>p_spinBox_MinWorkerDays</tabstop>
-  <tabstop>p_spinBox_MaxWorkerDays</tabstop>
-  <tabstop>p_timeEdit_GetStartedLaterThan</tabstop>
-  <tabstop>p_timeEdit_GetEndEarlierThan</tabstop>
   <tabstop>p_list_Wishes</tabstop>
   <tabstop>p_button_AddWishes</tabstop>
   <tabstop>p_button_DeleteWishes</tabstop>

@@ -1,0 +1,3 @@
+bin/debug/*.xml
+bin/release/
+build/

@@ -50,14 +50,6 @@ void WishesWorkersWidget::setupWidget()
             this, SLOT(slotModifyFile()));
     connect(ui->p_TextEdit_Addition, SIGNAL(textChanged()),
             this, SLOT(slotModifyFile()));
-    connect(ui->p_spinBox_MinWorkerDays, SIGNAL(editingFinished()),
-            this, SLOT(slotModifyFile()));
-    connect(ui->p_spinBox_MaxWorkerDays, SIGNAL(editingFinished()),
-            this, SLOT(slotModifyFile()));
-    connect(ui->p_timeEdit_GetStartedLaterThan, SIGNAL(editingFinished()),
-            this, SLOT(slotModifyFile()));
-    connect(ui->p_timeEdit_GetEndEarlierThan, SIGNAL(editingFinished()),
-            this, SLOT(slotModifyFile()));
     connect(ui->p_button_AddWishes, SIGNAL(clicked()),
             this, SLOT(slotModifyFile()));
     connect(ui->p_button_DeleteWishes, SIGNAL(clicked()),
@@ -79,15 +71,6 @@ void WishesWorkersWidget::setupWidget()
     connect(ui->p_dateTimeEdit_EndDate, SIGNAL(editingFinished()),
             p_editingMapper, SLOT(map()));
     p_editingMapper->setMapping(ui->p_dateTimeEdit_EndDate, "EndDate");
-
-    connect(ui->p_spinBox_MinWorkerDays, SIGNAL(editingFinished()),
-            p_editingMapper, SLOT(map()));
-    p_editingMapper->setMapping(ui->p_spinBox_MinWorkerDays, "MinWorkerDays");
-
-    connect(ui->p_spinBox_MaxWorkerDays, SIGNAL(editingFinished()),
-            p_editingMapper, SLOT(map()));
-    p_editingMapper->setMapping(ui->p_spinBox_MaxWorkerDays, "MaxWorkerDay");
-
 
     // Check ID worker, if ID is empty, then block list
     connect(ui->p_line_ID_worker, SIGNAL(editingFinished()),
@@ -122,12 +105,6 @@ void WishesWorkersWidget::loadPositions()
                 ui->p_comboBox_Position->addItem(it.Brief);
             }
         }
-        else
-        {
-            //ui->p_line_Surname->setText("unknown");
-            //ui->p_line_FirstName->setText("unknown");
-            //ui->p_line_LastName->setText("unknown");
-        }
     }
 }
 
@@ -156,6 +133,9 @@ void WishesWorkersWidget::slotCheckIDWorker()
         ui->p_line_Surname->clear();
         ui->p_line_FirstName->clear();
         ui->p_line_LastName->clear();
+
+        m_positions.clear();
+        ui->p_comboBox_Position->clear();
     }
     else
     {
@@ -178,6 +158,21 @@ void WishesWorkersWidget::slotCheckIDWorker()
 
                 Worker currentWorker = readWorker(str);
 
+                m_positions.clear();
+                for (auto it : currentWorker.ListPositions)
+                {
+                    Position temp;
+                    temp.Brief = it;
+                    m_positions.insert(it, temp);
+                }
+
+                ui->p_comboBox_Position->clear();
+                for (auto it : m_positions)
+                {
+                    ui->p_comboBox_Position->addItem(it.Brief);
+                }
+
+
                 ui->p_line_Surname->setText(currentWorker.Surname);
                 ui->p_line_FirstName->setText(currentWorker.FirstName);
                 ui->p_line_LastName->setText(currentWorker.LastName);
@@ -187,6 +182,9 @@ void WishesWorkersWidget::slotCheckIDWorker()
                 ui->p_line_Surname->setText("unknown");
                 ui->p_line_FirstName->setText("unknown");
                 ui->p_line_LastName->setText("unknown");
+
+                m_positions.clear();
+                ui->p_comboBox_Position->clear();
             }
         }
     }
@@ -204,7 +202,7 @@ void WishesWorkersWidget::slotSetPathPositionsInformation(const QString& path)
 {
     m_pathPositionsInformation = path;
     ui->p_comboBox_Position->clear();
-    loadPositions();
+    //loadPositions();
 }
 
 void WishesWorkersWidget::validateData()
@@ -231,11 +229,6 @@ void WishesWorkersWidget::resetData()
     ui->p_dateTimeEdit_EndDate->setTime(temp_time);
 
     ui->p_TextEdit_Addition->clear();
-    ui->p_spinBox_MinWorkerDays->setValue(1);
-    ui->p_spinBox_MaxWorkerDays->setValue(1);
-
-    ui->p_timeEdit_GetStartedLaterThan->setTime(QTime(8, 0, 0));
-    ui->p_dateTimeEdit_EndDate->setTime(QTime(22, 0, 0));
 
     ui->p_line_Surname->clear();
     ui->p_line_FirstName->clear();
@@ -246,10 +239,6 @@ void WishesWorkersWidget::resetData()
     ui->p_dateTimeEdit_StartDate->setEnabled(false);
     ui->p_dateTimeEdit_EndDate->setEnabled(false);
     ui->p_TextEdit_Addition->setEnabled(false);
-    ui->p_spinBox_MinWorkerDays->setEnabled(false);
-    ui->p_spinBox_MaxWorkerDays->setEnabled(false);
-    ui->p_timeEdit_GetStartedLaterThan->setEnabled(false);
-    ui->p_timeEdit_GetEndEarlierThan->setEnabled(false);
     ui->p_comboBox_Position->setEnabled(false);
 
 }
@@ -264,10 +253,6 @@ SingleWish WishesWorkersWidget::getInformationFromForm()
     info.EndDate = ui->p_dateTimeEdit_EndDate->dateTime().toString();
     info.Addition = ui->p_TextEdit_Addition->toPlainText();
     info.Position = ui->p_comboBox_Position->currentText();
-    info.MinWorkerDays = ui->p_spinBox_MinWorkerDays->value();
-    info.MaxWorkerDay = ui->p_spinBox_MaxWorkerDays->value();
-    info.GetStartedLaterThan = ui->p_timeEdit_GetStartedLaterThan->time().toString();
-    info.GetEndEarlierThan = ui->p_timeEdit_GetEndEarlierThan->time().toString();
 
     return info;
 }
@@ -282,10 +267,6 @@ void WishesWorkersWidget::setInformationToForm(const SingleWish& info)
 
     ui->p_TextEdit_Addition->setPlainText(info.Addition);
     ui->p_comboBox_Position->setCurrentIndex(ui->p_comboBox_Position->findText(info.Position));
-    ui->p_spinBox_MinWorkerDays->setValue(info.MinWorkerDays);
-    ui->p_spinBox_MaxWorkerDays->setValue(info.MaxWorkerDay);
-    ui->p_timeEdit_GetStartedLaterThan->setTime(QTime::fromString(info.GetStartedLaterThan));
-    ui->p_timeEdit_GetEndEarlierThan->setTime(QTime::fromString(info.GetEndEarlierThan));
 }
 
 int WishesWorkersWidget::findLastIDInList()
@@ -317,12 +298,6 @@ void WishesWorkersWidget::slotAddWish()
 
     single.StartDate = QDateTime(QDate::currentDate(), QTime(8,0,0)).toString();
     single.EndDate = QDateTime(QDate::currentDate(), QTime(22,0,0)).toString();
-
-    single.MinWorkerDays = 1;
-    single.MaxWorkerDay = 1;
-
-    single.GetStartedLaterThan = QTime(8, 0, 0).toString();
-    single.GetEndEarlierThan = QTime(22, 0, 0).toString();
 
     m_wishes.insert(item->text(), single);
     ui->p_line_ID_worker->setEnabled(false);
@@ -358,11 +333,6 @@ void WishesWorkersWidget::slotDeleteWish()
         ui->p_dateTimeEdit_EndDate->setTime(temp_time);
 
         ui->p_TextEdit_Addition->clear();
-        ui->p_spinBox_MinWorkerDays->setValue(1);
-        ui->p_spinBox_MaxWorkerDays->setValue(1);
-
-        ui->p_timeEdit_GetStartedLaterThan->setTime(QTime(8, 0, 0));
-        ui->p_dateTimeEdit_EndDate->setTime(QTime(22, 0, 0));
 
         ui->p_line_Surname->clear();
         ui->p_line_FirstName->clear();
@@ -373,10 +343,6 @@ void WishesWorkersWidget::slotDeleteWish()
         ui->p_dateTimeEdit_StartDate->setEnabled(false);
         ui->p_dateTimeEdit_EndDate->setEnabled(false);
         ui->p_TextEdit_Addition->setEnabled(false);
-        ui->p_spinBox_MinWorkerDays->setEnabled(false);
-        ui->p_spinBox_MaxWorkerDays->setEnabled(false);
-        ui->p_timeEdit_GetStartedLaterThan->setEnabled(false);
-        ui->p_timeEdit_GetEndEarlierThan->setEnabled(false);
         ui->p_comboBox_Position->setEnabled(false);
     }
 
@@ -426,10 +392,6 @@ void WishesWorkersWidget::slotEditWish(QListWidgetItem *item)
     ui->p_dateTimeEdit_StartDate->setEnabled(true);
     ui->p_dateTimeEdit_EndDate->setEnabled(true);
     ui->p_TextEdit_Addition->setEnabled(true);
-    ui->p_spinBox_MinWorkerDays->setEnabled(true);
-    ui->p_spinBox_MaxWorkerDays->setEnabled(true);
-    ui->p_timeEdit_GetStartedLaterThan->setEnabled(true);
-    ui->p_timeEdit_GetEndEarlierThan->setEnabled(true);
     ui->p_comboBox_Position->setEnabled(true);
 }
 
@@ -491,14 +453,6 @@ void WishesWorkersWidget::slotUpdateData(const QString& attributeName)
         }
     }
 
-    if (attributeName == "MinWorkerDays" || attributeName == "MaxWorkerDay")
-    {
-        if (ui->p_spinBox_MinWorkerDays->value() > ui->p_spinBox_MaxWorkerDays->value())
-        {
-            ui->p_spinBox_MaxWorkerDays->setValue(ui->p_spinBox_MinWorkerDays->value());
-        }
-    }
-
     // save data from form to memory
     if (m_currentEditWish != "")
     {
@@ -551,7 +505,7 @@ void WishesWorkersWidget::slotOpen()
         {
             QString str = QFileDialog::getOpenFileName(this,
                                                        "Open...",
-                                                       "",
+                                                       m_defaultPath,
                                                        "*.xml");
             openFile(str);
         }
@@ -561,7 +515,7 @@ void WishesWorkersWidget::slotOpen()
 
             QString str = QFileDialog::getOpenFileName(this,
                                                        "Open...",
-                                                       "",
+                                                       m_defaultPath,
                                                        "*.xml");
             openFile(str);
         }
@@ -570,7 +524,7 @@ void WishesWorkersWidget::slotOpen()
     {
         QString str = QFileDialog::getOpenFileName(this,
                                                    "Open...",
-                                                   "",
+                                                   m_defaultPath,
                                                    "*.xml");
         openFile(str);
     }
@@ -624,7 +578,7 @@ void WishesWorkersWidget::slotSave()
 
 void WishesWorkersWidget::slotSaveAs()
 {
-    QString str = QFileDialog::getSaveFileName(this, "Save as...", "");
+    QString str = QFileDialog::getSaveFileName(this, "Save as...", m_defaultPath, "*.xml");
     if (!str.isEmpty())
     {
         m_filename = str;
@@ -670,4 +624,9 @@ void WishesWorkersWidget::slotShowNavigationButtons(bool showState)
     {
         ui->p_layout_navigationButtons->itemAt(i)->widget()->setVisible(showState);
     }
+}
+
+void WishesWorkersWidget::slotSetDefaulPath(const QString& path)
+{
+    m_defaultPath = path;
 }

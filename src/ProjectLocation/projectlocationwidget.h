@@ -34,6 +34,8 @@ private:
     bool isModifiedFile = false;
     QSignalMapper* m_sigmapperButtons;
 
+    QString m_defaultPath;
+
 public slots:
     void slotGetDirPath(QWidget*);
     void slotModifyFile(const QString&);
@@ -43,5 +45,7 @@ public slots:
     void slotSaveAs();
 
     void slotShowNavigationButtons(bool showState);
+
+    void slotSetDefaulPath(const QString&);
 };
 #endif // PROJECTLOCATIONWIDGET_H

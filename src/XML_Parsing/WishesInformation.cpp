@@ -41,22 +41,6 @@ Wishes readWishes(QDomDocument& doc)
             {
                 info_singleWish.Addition = elem_attribute.text();
             }
-            if (elem_attribute.tagName() == "MinWorkerDays")
-            {
-                info_singleWish.MinWorkerDays = elem_attribute.text().toInt();
-            }
-            if (elem_attribute.tagName() == "MaxWorkerDay")
-            {
-                info_singleWish.MaxWorkerDay = elem_attribute.text().toInt();
-            }
-            if (elem_attribute.tagName() == "GetStartedLaterThan")
-            {
-                info_singleWish.GetStartedLaterThan = elem_attribute.text();
-            }
-            if (elem_attribute.tagName() == "GetEndEarlierThan")
-            {
-                info_singleWish.GetEndEarlierThan = elem_attribute.text();
-            }
 
             node_attribute = node_attribute.nextSibling();
         }
@@ -104,10 +88,6 @@ void write_WishesToFile(const QString& filename, const Wishes& info)
         singleWish.appendChild(makeElement(doc, "EndDate", it->EndDate));
         singleWish.appendChild(makeElement(doc, "Position", it->Position));
         singleWish.appendChild(makeElement(doc, "Addition", it->Addition));
-        singleWish.appendChild(makeElement(doc, "MinWorkerDays", QString::number(it->MinWorkerDays)));
-        singleWish.appendChild(makeElement(doc, "MaxWorkerDay", QString::number(it->MaxWorkerDay)));
-        singleWish.appendChild(makeElement(doc, "GetStartedLaterThan", it->GetStartedLaterThan));
-        singleWish.appendChild(makeElement(doc, "GetEndEarlierThan", it->GetEndEarlierThan));
 
         rootElem.appendChild(singleWish);
     }

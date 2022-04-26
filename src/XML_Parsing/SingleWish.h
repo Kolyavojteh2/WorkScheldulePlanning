@@ -13,10 +13,6 @@ public:
     QString EndDate;
     QString Position;
     QString Addition;
-    int MinWorkerDays;
-    int MaxWorkerDay;
-    QString GetStartedLaterThan;
-    QString GetEndEarlierThan;
 };
 
 typedef QMap<QString, SingleWish> Wishes;

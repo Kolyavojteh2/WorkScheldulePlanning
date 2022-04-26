@@ -43,6 +43,7 @@ private:
     bool isModifiedFile = false;
 
     QString m_pathWorkersInformation;
+    QString m_defaultPath;
 
     Vacations m_vacations;
     QString m_currentEditVacationName;
@@ -65,6 +66,7 @@ public slots:
     void slotShowNavigationButtons(bool showState);
 
     void slotSetPathWorkersInformation(const QString&);
+    void slotSetDefaulPath(const QString&);
 
     void slotCheckIDWorker();
     void slotChangedIDWorker(const QString &);

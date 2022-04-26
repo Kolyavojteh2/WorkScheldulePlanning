@@ -384,7 +384,7 @@ void VacationWidget::slotOpen()
         {
             QString str = QFileDialog::getOpenFileName(this,
                                                        "Open...",
-                                                       "",
+                                                       m_defaultPath,
                                                        "*.xml");
             openFile(str);
         }
@@ -394,7 +394,7 @@ void VacationWidget::slotOpen()
 
             QString str = QFileDialog::getOpenFileName(this,
                                                        "Open...",
-                                                       "",
+                                                       m_defaultPath,
                                                        "*.xml");
             openFile(str);
         }
@@ -403,7 +403,7 @@ void VacationWidget::slotOpen()
     {
         QString str = QFileDialog::getOpenFileName(this,
                                                    "Open...",
-                                                   "",
+                                                   m_defaultPath,
                                                    "*.xml");
         openFile(str);
     }
@@ -450,7 +450,7 @@ void VacationWidget::slotSave()
 
 void VacationWidget::slotSaveAs()
 {
-    QString str = QFileDialog::getSaveFileName(this, "Save as...", "");
+    QString str = QFileDialog::getSaveFileName(this, "Save as...", m_defaultPath, "*.xml");
     if (!str.isEmpty())
     {
         m_filename = str;
@@ -511,4 +511,9 @@ void VacationWidget::slotSetPathWorkersInformation(const QString& path)
 void VacationWidget::slotChangedIDWorker(const QString &text)
 {
     slotCheckIDWorker();
+}
+
+void VacationWidget::slotSetDefaulPath(const QString& path)
+{
+    m_defaultPath = path;
 }
