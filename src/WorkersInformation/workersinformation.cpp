@@ -5,27 +5,44 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QValidator>
+#include <QInputDialog>
+/*
+int WorkersInformation::getLastId()
+{
+    QFile file_lastID(m_defaultPath + "lastID");
+    if (!file_lastID.exists())
+    {
+        file_lastID.open(QFile::OpenModeFlag::WriteOnly);
+        file_lastID.write("1");
+        file_lastID.close();
+    }
+    if (file_lastID.open(QFile::OpenModeFlag::ReadOnly))
+    {
+        auto byte_arr = file_lastID.readAll();
+        m_lastID = byte_arr.toInt();
+        file_lastID.close();
+    }
+}
+*/
 
 void WorkersInformation::setupWidget()
 {
-    // Створення об'єкту контекстного меню
-    p_contextMenu = new QMenu(tr("Context Menu"));
-    p_contextMenu->addAction(tr("Add new position"), this, SLOT(slotAddPosition()));
-    p_contextMenu->addSeparator();
-    p_contextMenu->addAction(tr("Delete selected"), this, SLOT(slotDeletePosition()));
-
     validateData();
+    slotChangeWindowTitle(tr("Worker ID:") +tr("Unnamed"));
 
     connect(ui->p_button_Open, SIGNAL(clicked()),
             this, SLOT(slotOpen()));
-    connect(ui->p_list_Positions, SIGNAL(customContextMenuRequested(const QPoint&)),
-            this, SLOT(slotContextMenu(const QPoint&)));
     connect(ui->p_button_Save, SIGNAL(clicked()),
             this, SLOT(slotSave()));
-    connect(ui->p_button_Close, SIGNAL(clicked()),
-            this, SLOT(slotClose()));
+    connect(ui->p_button_SaveAs, SIGNAL(clicked()),
+            this, SLOT(slotSaveAs()));
     connect(ui->p_button_NewWorker, SIGNAL(clicked()),
             this, SLOT(slotCreateNew()));
+
+    connect(ui->p_button_AddPosition, SIGNAL(clicked()),
+            this, SLOT(slotAddPosition()));
+    connect(ui->p_button_DeletePosition, SIGNAL(clicked()),
+            this, SLOT(slotDeletePosition()));
 }
 
 WorkersInformation::WorkersInformation(QWidget *parent)
@@ -35,19 +52,6 @@ WorkersInformation::WorkersInformation(QWidget *parent)
 {
     ui->setupUi(this);
     setupWidget();
-}
-
-WorkersInformation::WorkersInformation(const QString filename, QWidget *parent)
-    : QWidget(parent)
-    , ui(new Ui::WorkersInformation)
-    , m_filename(filename)
-    , m_defaultPath("./projects/")
-{
-    // Базове налаштування віджета
-    ui->setupUi(this);
-    setupWidget();
-
-    openFile(filename);
 }
 
 void WorkersInformation::slotSetDefaulPath(const QString& path)
@@ -76,10 +80,30 @@ Worker WorkersInformation::getInformationFromForm()
 
 void WorkersInformation::slotSave()
 {
+    if (ui->p_line_ID->text().isEmpty())
+    {
+        QMessageBox::critical(this, tr("Error"), tr("The workers ID is not exists.\nSet workers ID."));
+        return;
+    }
+
     if (m_filename.isEmpty())
     {
-        slotSaveAs();
-        return;
+        if (QFile::exists(m_defaultPath + "/" + ui->p_line_ID->text() + ".xml"))
+        {
+            QString msg_text = tr("The worker with ID:") + ui->p_line_ID->text() + tr(" is exists.\nChange ID.");
+            QMessageBox::critical(this, tr("Error"), msg_text);
+            return;
+        }
+
+        if (!m_defaultPath.isEmpty())
+        {
+            m_filename = m_defaultPath + ui->p_line_ID->text() + ".xml";
+        }
+        else
+        {
+            slotSaveAs();
+            return;
+        }
     }
 
     Worker info = getInformationFromForm();
@@ -89,17 +113,23 @@ void WorkersInformation::slotSave()
     func_writeWorkerToFile writeWorker = (func_writeWorkerToFile)xmlParser.resolve("write_WorkerInfoToFile");
 
     writeWorker(m_filename, info);
-    m_oldVersion = info;
+    if (!m_filename.isEmpty())
+        ui->p_line_ID->setEnabled(false);
+    else
+        ui->p_line_ID->setEnabled(true);
+
+    isModifiedFile = false;
 
     slotChangeWindowTitle(tr("Worker ID: ") + QString().number(info.ID_worker));
 }
 
 void WorkersInformation::slotSaveAs()
 {
-    QString str = QFileDialog::getSaveFileName(this, "Save as...", m_defaultPath);
+    QString str = QFileDialog::getExistingDirectory(this, "Choise dir...", m_defaultPath);
     if (!str.isEmpty())
     {
-        m_filename = str;
+        m_defaultPath = str + "/";
+        m_filename = m_defaultPath + ui->p_line_ID->text() + ".xml";
         slotSave();
     }
 }
@@ -117,36 +147,40 @@ void WorkersInformation::resetForm()
 
 void WorkersInformation::slotAddPosition()
 {
-    QListWidgetItem* elem = new QListWidgetItem(tr("Unnamed position"));
-    elem->setFlags(elem->flags() | Qt::ItemIsEditable);
-    ui->p_list_Positions->addItem(elem);
+    QStringList positionList = m_positions.uniqueKeys();
+    bool ok;
+    QString newItemName = QInputDialog::getItem(this,
+                          "New position",
+                          "Add the position of worker:",
+                          positionList,
+                          0,
+                          false,
+                          &ok);
+    if (!ok)
+        return;
+
+    QListWidgetItem* elem = new QListWidgetItem(newItemName);
+
+    if (ui->p_list_Positions->findItems(newItemName, Qt::MatchFlag::MatchFixedString).isEmpty())
+        ui->p_list_Positions->addItem(elem);
 }
 
 void WorkersInformation::slotDeletePosition()
 {
-    auto item = ui->p_list_Positions->currentItem();
-    delete item;
-}
-
-void WorkersInformation::slotContextMenu(const QPoint& p)
-{
+    // Якщо список пустий, то виходимо
     if (ui->p_list_Positions->selectedItems().isEmpty())
-        p_contextMenu->actions().last()->setEnabled(false);
-    else
-        p_contextMenu->actions().last()->setEnabled(true);
+        return;
+    auto item = ui->p_list_Positions->currentItem();
 
-    QPoint global = ui->p_list_Positions->mapToGlobal(p);
-    p_contextMenu->exec(global);
-}
+    // Вказуємо що файл модифіковано
+    slotModifyFile();
 
-void WorkersInformation::slotClose()
-{
-    this->close();
+    delete item;
 }
 
 void WorkersInformation::slotOpen()
 {
-    if (m_oldVersion != getInformationFromForm())
+    if (isModifiedFile)
     {
         int result = QMessageBox::warning(this,
                                           tr("No changes have been saved to the file"),
@@ -180,6 +214,11 @@ void WorkersInformation::slotOpen()
                                                    "*.xml");
         openFile(str);
     }
+
+    if (!m_filename.isEmpty())
+        ui->p_line_ID->setEnabled(false);
+    else
+        ui->p_line_ID->setEnabled(true);
 }
 
 void WorkersInformation::openFile(const QString & filename)
@@ -213,7 +252,7 @@ void WorkersInformation::openFile(const QString & filename)
     }
 
     // Створення копії інформації для порівняння
-    m_oldVersion = getInformationFromForm();
+    isModifiedFile = false;
 
     // Зміна титулки програми
     slotChangeWindowTitle(tr("Worker ID:") + QString().number(info.ID_worker));
@@ -226,7 +265,7 @@ void WorkersInformation::slotChangeWindowTitle(const QString& str)
 
 void WorkersInformation::slotCreateNew()
 {
-    if (m_oldVersion != getInformationFromForm())
+    if (isModifiedFile)
     {
         int result = QMessageBox::warning(this,
                                           tr("No changes have been saved to the file"),
@@ -237,7 +276,7 @@ void WorkersInformation::slotCreateNew()
         {
             resetForm();
             m_filename.clear();
-            m_oldVersion = Worker();
+            isModifiedFile = false;
         }
         if (result == QMessageBox::Yes)
         {
@@ -248,8 +287,16 @@ void WorkersInformation::slotCreateNew()
     {
         resetForm();
         m_filename.clear();
-        m_oldVersion = Worker();
+        isModifiedFile = false;
     }
+
+    if (!m_filename.isEmpty())
+        ui->p_line_ID->setEnabled(false);
+    else
+        ui->p_line_ID->setEnabled(true);
+
+    slotChangeWindowTitle(tr("Worker ID:") +tr("Unnamed"));
+
 }
 
 WorkersInformation::~WorkersInformation()
@@ -269,7 +316,7 @@ void WorkersInformation::validateData()
 
 void WorkersInformation::closeEvent(QCloseEvent *event)
 {
-    if (m_oldVersion != getInformationFromForm())
+    if (isModifiedFile)
     {
         int result = QMessageBox::warning(this,
                                           tr("No changes have been saved to the file"),
@@ -303,3 +350,32 @@ void WorkersInformation::slotShowNavigationButtons(bool showState)
         ui->p_layout_navigationButtons->itemAt(i)->widget()->setVisible(showState);
     }
 }
+
+void WorkersInformation::slotModifyFile()
+{
+    isModifiedFile = true;
+}
+
+void WorkersInformation::slotSetPathPositionsInformation(const QString& path)
+{
+    m_pathPositionsInformation = path;
+    m_positions.clear();
+    loadPositions();
+}
+
+void WorkersInformation::loadPositions()
+{
+    if (!m_pathPositionsInformation.isEmpty())
+    {
+        QString str = m_pathPositionsInformation + "positions.xml";
+        if (QFile::exists(str))
+        {
+            typedef Positions (*func_readPositionsInfo)(const QString&);
+            QLibrary xml_parser("XML_Parsing");
+            func_readPositionsInfo readPositions = (func_readPositionsInfo)xml_parser.resolve("read_PositionsFromFile");
+
+            m_positions = readPositions(str);
+        }
+    }
+}
+

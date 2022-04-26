@@ -5,6 +5,7 @@
 #include <QString>
 #include <QMenu>
 #include "../../src/XML_Parsing/Worker.h"
+#include "../../src/XML_Parsing/Positions.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class WorkersInformation; }
@@ -16,7 +17,6 @@ class WorkersInformation : public QWidget
 
 public:
     WorkersInformation(QWidget *parent = nullptr);
-    WorkersInformation(const QString filename, QWidget *parent = nullptr);
     ~WorkersInformation();
 
 private:
@@ -27,30 +27,41 @@ private:
 
     void setupWidget();
 
+    void loadPositions();
+    //int getLastId();
+
 protected:
     void closeEvent(QCloseEvent *event) override;
 
 private:
     Ui::WorkersInformation *ui;
-    QMenu *p_contextMenu;
+    Positions m_positions;
 
     QString m_filename;
+
     QString m_defaultPath;
-    Worker m_oldVersion;
+    QString m_pathPositionsInformation;
+
+    bool isModifiedFile = false;
+
+    //int m_lastID = -1;
 
 public slots:
+    void slotCreateNew();
     void slotOpen();
     void slotSave();
     void slotSaveAs();
-    void slotClose();
-    void slotCreateNew();
+
     void slotAddPosition();
     void slotDeletePosition();
-    void slotContextMenu(const QPoint&);
+
     void slotChangeWindowTitle(const QString&);
 
     void slotSetDefaulPath(const QString&);
+    void slotSetPathPositionsInformation(const QString&);
 
     void slotShowNavigationButtons(bool showState);
+
+    void slotModifyFile();
 };
 #endif // WORKERSINFORMATION_H
