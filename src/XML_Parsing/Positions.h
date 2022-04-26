@@ -12,6 +12,7 @@ public:
     QString FullName;
     QString Description;
 
+    /*
     bool operator==(const Position& r) const
     {
         if (Brief == r.Brief &&
@@ -27,8 +28,11 @@ public:
             return false;
         return true;
     }
+    */
 };
 
+typedef QMap<QString, Position> Positions;
+/*
 class Positions
 {
 public:
@@ -49,5 +53,6 @@ public:
         return true;
     }
 };
+*/
 
 #endif // POSITIONS_H

@@ -534,7 +534,7 @@ void RequirementWidget::loadPositions()
 
             m_positions = readPositions(str);
 
-            for (auto it : m_positions.list)
+            for (auto it : m_positions)
             {
                 ui->p_comboBox_Position->addItem(it.Brief);
             }

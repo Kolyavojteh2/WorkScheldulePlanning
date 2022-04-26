@@ -31,7 +31,7 @@ Positions readPositions(QDomDocument& doc)
 
             node_attribute = node_attribute.nextSibling();
         }
-        allPositions.list.insert(info_singlePosition.Brief, info_singlePosition);
+        allPositions.insert(info_singlePosition.Brief, info_singlePosition);
 
         node_singlePosition = node_singlePosition.nextSibling();
     }
@@ -67,7 +67,7 @@ void write_PositionsToFile(const QString& filename, const Positions& info)
     QDomElement rootElem = doc.createElement("Positions");
     doc.appendChild(rootElem);
 
-    for (auto it = info.list.begin(); it != info.list.end(); it++)
+    for (auto it = info.begin(); it != info.end(); it++)
     {
         QDomElement singlePosition = doc.createElement("SinglePosition");
 

@@ -117,7 +117,7 @@ void WishesWorkersWidget::loadPositions()
 
             m_positions = readPositions(str);
 
-            for (auto it : m_positions.list)
+            for (auto it : m_positions)
             {
                 ui->p_comboBox_Position->addItem(it.Brief);
             }
@@ -149,6 +149,10 @@ void WishesWorkersWidget::slotCheckIDWorker()
         ui->p_button_AddWishes->setEnabled(false);
         ui->p_button_DeleteWishes->setEnabled(false);
 
+        ui->p_line_Surname->setEnabled(false);
+        ui->p_line_FirstName->setEnabled(false);
+        ui->p_line_LastName->setEnabled(false);
+
         ui->p_line_Surname->clear();
         ui->p_line_FirstName->clear();
         ui->p_line_LastName->clear();
@@ -157,6 +161,10 @@ void WishesWorkersWidget::slotCheckIDWorker()
     {
         ui->p_button_AddWishes->setEnabled(true);
         ui->p_button_DeleteWishes->setEnabled(true);
+
+        ui->p_line_Surname->setEnabled(true);
+        ui->p_line_FirstName->setEnabled(true);
+        ui->p_line_LastName->setEnabled(true);
 
         //QFile worker_file;
         if (!m_pathWorkersInformation.isEmpty())
