@@ -69,5 +69,7 @@ public slots:
     void slotSetPathWorkersInformation(const QString&);
     void slotSetPathPositionsInformation(const QString&);
 
+    void slotShowNavigationButtons(bool showState);
+
 };
 #endif // WISHESWORKERSWIDGET_H

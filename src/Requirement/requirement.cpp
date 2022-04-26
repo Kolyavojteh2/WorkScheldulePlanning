@@ -7,6 +7,7 @@
 #include <QFileDialog>
 #include <QLibrary>
 #include <QCloseEvent>
+#include "../../src/XML_Parsing/Positions.h"
 
 RequirementWidget::RequirementWidget(QWidget *parent)
     : QWidget(parent)
@@ -97,9 +98,6 @@ void RequirementWidget::validateData()
 
 void RequirementWidget::resetData()
 {
-    m_requirements.clear();
-    ui->p_list_Requirements->clear();
-
     ui->p_line_ID->setText("");
 
     QTime temp_time(8,0,0);
@@ -126,6 +124,11 @@ void RequirementWidget::resetData()
     ui->p_checkbox_BiggerAmountWorkers->setEnabled(false);
     ui->p_checkbox_Neglect->setEnabled(false);
     ui->p_comboBox_Position->setEnabled(false);
+
+    m_requirements.clear();
+    ui->p_list_Requirements->clear();
+    m_currentEditRequirement.clear();
+    m_filename.clear();
 }
 
 SingleRequirement RequirementWidget::getInformationFromForm()
@@ -430,6 +433,11 @@ void RequirementWidget::slotOpen()
 
 void RequirementWidget::openFile(const QString& filename)
 {
+    resetData();
+
+    if (filename.isEmpty())
+        return;
+
     m_filename = filename;
 
     // Завантаження даних про робітника із файлу
@@ -503,5 +511,41 @@ void RequirementWidget::closeEvent(QCloseEvent *event)
     else
     {
         event->accept();
+    }
+}
+
+void RequirementWidget::slotSetPathPositionsInformation(const QString& path)
+{
+    m_pathPositionsInformation = path;
+    ui->p_comboBox_Position->clear();
+    loadPositions();
+}
+
+void RequirementWidget::loadPositions()
+{
+    if (!m_pathPositionsInformation.isEmpty())
+    {
+        QString str = m_pathPositionsInformation + "positions.xml";
+        if (QFile::exists(str))
+        {
+            typedef Positions (*func_readPositionsInfo)(const QString&);
+            QLibrary xml_parser("XML_Parsing");
+            func_readPositionsInfo readPositions = (func_readPositionsInfo)xml_parser.resolve("read_PositionsFromFile");
+
+            m_positions = readPositions(str);
+
+            for (auto it : m_positions.list)
+            {
+                ui->p_comboBox_Position->addItem(it.Brief);
+            }
+        }
+    }
+}
+
+void RequirementWidget::slotShowNavigationButtons(bool showState)
+{
+    for (int i = 0; i < ui->p_layout_navigationButtons->count(); i++)
+    {
+        ui->p_layout_navigationButtons->itemAt(i)->widget()->setVisible(showState);
     }
 }

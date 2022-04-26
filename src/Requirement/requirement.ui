@@ -192,7 +192,7 @@
       </layout>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout">
+      <layout class="QHBoxLayout" name="p_layout_navigationButtons">
        <item>
         <widget class="QPushButton" name="p_button_CreateNew">
          <property name="text">

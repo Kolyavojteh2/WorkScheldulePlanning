@@ -41,5 +41,7 @@ public slots:
     void slotOpen();
     void slotSave();
     void slotSaveAs();
+
+    void slotShowNavigationButtons(bool showState);
 };
 #endif // PROJECTLOCATIONWIDGET_H

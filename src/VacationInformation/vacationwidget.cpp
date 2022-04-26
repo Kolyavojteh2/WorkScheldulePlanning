@@ -15,6 +15,7 @@ VacationWidget::VacationWidget(QWidget *parent)
 void VacationWidget::setupWidget()
 {
     validateData();
+    slotCheckIDWorker();
 
     ui->p_dateEdit_StartDate->setDate(QDate::currentDate());
     ui->p_dateEdit_EndDate->setDate(QDate::currentDate());
@@ -23,6 +24,16 @@ void VacationWidget::setupWidget()
     ui->p_line_ID_Worker->setEnabled(false);
     ui->p_dateEdit_StartDate->setEnabled(false);
     ui->p_dateEdit_EndDate->setEnabled(false);
+
+    ui->p_line_Surname->setEnabled(false);
+    ui->p_line_FirstName->setEnabled(false);
+    ui->p_line_LastName->setEnabled(false);
+
+    // Check ID worker, if ID is empty, then block list
+    connect(ui->p_line_ID_Worker, SIGNAL(editingFinished()),
+            this, SLOT(slotCheckIDWorker()));
+    connect(ui->p_line_ID_Worker, SIGNAL(textChanged(const QString&)),
+            this, SLOT(slotChangedIDWorker(const QString&)));
 
     // Navigation buttons
     connect(ui->p_button_CreateNew, SIGNAL(clicked()),
@@ -98,6 +109,10 @@ void VacationWidget::resetData()
     ui->p_dateEdit_StartDate->setEnabled(false);
     ui->p_dateEdit_EndDate->setEnabled(false);
 
+    ui->p_line_Surname->setEnabled(false);
+    ui->p_line_FirstName->setEnabled(false);
+    ui->p_line_LastName->setEnabled(false);
+
     ui->p_line_ID_Vacation->setText("");
     ui->p_line_ID_Worker->setText("");
     ui->p_dateEdit_StartDate->setDate(QDate::currentDate());
@@ -172,6 +187,10 @@ void VacationWidget::slotDeleteVacation()
         ui->p_dateEdit_StartDate->setEnabled(false);
         ui->p_dateEdit_EndDate->setEnabled(false);
 
+        ui->p_line_Surname->setEnabled(false);
+        ui->p_line_FirstName->setEnabled(false);
+        ui->p_line_LastName->setEnabled(false);
+
         ui->p_line_ID_Vacation->setText("");
         ui->p_line_ID_Worker->setText("");
         ui->p_dateEdit_StartDate->setDate(QDate::currentDate());
@@ -214,6 +233,10 @@ void VacationWidget::slotEditVacation(QListWidgetItem *item)
     ui->p_line_ID_Worker->setEnabled(true);
     ui->p_dateEdit_StartDate->setEnabled(true);
     ui->p_dateEdit_EndDate->setEnabled(true);
+
+    ui->p_line_Surname->setEnabled(true);
+    ui->p_line_FirstName->setEnabled(true);
+    ui->p_line_LastName->setEnabled(true);
 }
 
 void VacationWidget::slotUpdateData(const QString& attributeName)
@@ -277,6 +300,43 @@ void VacationWidget::slotUpdateData(const QString& attributeName)
     {
         m_vacations[m_currentEditVacationName] = getInformationFromForm();
     }
+}
+
+void VacationWidget::slotCheckIDWorker()
+{
+    //QFile worker_file;
+    if (!m_pathWorkersInformation.isEmpty())
+    {
+        QString str = m_pathWorkersInformation + ui->p_line_ID_Worker->text() + ".xml";
+        if (QFile::exists(str))
+        {
+            typedef Worker (*func_readWorkerInfo)(const QString&);
+            QLibrary xml_parser("XML_Parsing");
+            func_readWorkerInfo readWorker = (func_readWorkerInfo)xml_parser.resolve("read_WorkerInfoFromFile");
+
+            Worker currentWorker = readWorker(str);
+
+            ui->p_line_Surname->setText(currentWorker.Surname);
+            ui->p_line_FirstName->setText(currentWorker.FirstName);
+            ui->p_line_LastName->setText(currentWorker.LastName);
+        }
+        else
+        {
+            ui->p_line_Surname->setText("unknown");
+            ui->p_line_FirstName->setText("unknown");
+            ui->p_line_LastName->setText("unknown");
+        }
+    }
+
+    if (ui->p_line_ID_Worker->text().isEmpty())
+    {
+        ui->p_line_Surname->clear();
+        ui->p_line_FirstName->clear();
+        ui->p_line_LastName->clear();
+    }
+
+    if (ui->p_line_ID_Worker->text().isEmpty() && ui->p_list_Vacations->count() == 0)
+        isModifiedFile = false;
 }
 
 void VacationWidget::slotCreateNew()
@@ -351,6 +411,9 @@ void VacationWidget::slotOpen()
 
 void VacationWidget::openFile(const QString& filename)
 {
+    if (filename.isEmpty())
+        return;
+
     m_filename = filename;
 
     // Завантаження даних про робітника із файлу
@@ -438,4 +501,14 @@ void VacationWidget::slotShowNavigationButtons(bool showState)
     {
         ui->p_layout_navigationButtons->itemAt(i)->widget()->setVisible(showState);
     }
+}
+
+void VacationWidget::slotSetPathWorkersInformation(const QString& path)
+{
+    m_pathWorkersInformation = path;
+}
+
+void VacationWidget::slotChangedIDWorker(const QString &text)
+{
+    slotCheckIDWorker();
 }

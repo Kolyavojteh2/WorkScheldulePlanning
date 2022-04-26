@@ -57,5 +57,7 @@ public slots:
     void slotModifyFile();
 
     void slotSetDefaulPath(const QString&);
+
+    void slotShowNavigationButtons(bool showState);
 };
 #endif // POSITIONSWIDGET_H

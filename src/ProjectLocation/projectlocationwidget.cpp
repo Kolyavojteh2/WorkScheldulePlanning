@@ -165,6 +165,9 @@ void ProjectLocationWidget::slotOpen()
 void ProjectLocationWidget::openFile(const QString & filename)
 {
     //resetData();
+    if (filename.isEmpty())
+        return;
+
     m_filename = filename;
 
     // Завантаження даних про робітника із файлу
@@ -233,5 +236,13 @@ void ProjectLocationWidget::closeEvent(QCloseEvent *event)
     else
     {
         event->accept();
+    }
+}
+
+void ProjectLocationWidget::slotShowNavigationButtons(bool showState)
+{
+    for (int i = 0; i < ui->p_layout_navigationButtons->count(); i++)
+    {
+        ui->p_layout_navigationButtons->itemAt(i)->widget()->setVisible(showState);
     }
 }

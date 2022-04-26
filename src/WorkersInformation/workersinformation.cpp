@@ -184,6 +184,9 @@ void WorkersInformation::slotOpen()
 
 void WorkersInformation::openFile(const QString & filename)
 {
+    if (filename.isEmpty())
+        return;
+
     m_filename = filename;
 
     // Завантаження даних про робітника із файлу
@@ -290,5 +293,13 @@ void WorkersInformation::closeEvent(QCloseEvent *event)
     else
     {
         event->accept();
+    }
+}
+
+void WorkersInformation::slotShowNavigationButtons(bool showState)
+{
+    for (int i = 0; i < ui->p_layout_navigationButtons->count(); i++)
+    {
+        ui->p_layout_navigationButtons->itemAt(i)->widget()->setVisible(showState);
     }
 }

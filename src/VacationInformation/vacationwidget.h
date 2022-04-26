@@ -42,7 +42,7 @@ private:
     QString m_filename;
     bool isModifiedFile = false;
 
-    //QString m_pathWorkersInformation;
+    QString m_pathWorkersInformation;
 
     Vacations m_vacations;
     QString m_currentEditVacationName;
@@ -63,5 +63,11 @@ public slots:
     void slotModifyFile();
 
     void slotShowNavigationButtons(bool showState);
+
+    void slotSetPathWorkersInformation(const QString&);
+
+    void slotCheckIDWorker();
+    void slotChangedIDWorker(const QString &);
+
 };
 #endif // VACATIONWIDGET_H

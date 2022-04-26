@@ -50,5 +50,7 @@ public slots:
     void slotChangeWindowTitle(const QString&);
 
     void slotSetDefaulPath(const QString&);
+
+    void slotShowNavigationButtons(bool showState);
 };
 #endif // WORKERSINFORMATION_H

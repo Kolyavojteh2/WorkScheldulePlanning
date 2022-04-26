@@ -138,7 +138,7 @@
        </spacer>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="buttonsLayout">
+       <layout class="QHBoxLayout" name="p_layout_navigationButtons">
         <item>
          <widget class="QPushButton" name="p_button_NewWorker">
           <property name="text">

@@ -176,6 +176,9 @@ void ProjectSetupWidget::slotOpen()
 
 void ProjectSetupWidget::openFile(const QString& filename)
 {
+    if (filename.isEmpty())
+        return;
+
     m_filename = filename;
 
     // Завантаження даних про робітника із файлу

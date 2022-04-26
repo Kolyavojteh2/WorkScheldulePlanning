@@ -124,9 +124,9 @@ void WishesWorkersWidget::loadPositions()
         }
         else
         {
-            ui->p_line_Surname->setText("unknown");
-            ui->p_line_FirstName->setText("unknown");
-            ui->p_line_LastName->setText("unknown");
+            //ui->p_line_Surname->setText("unknown");
+            //ui->p_line_FirstName->setText("unknown");
+            //ui->p_line_LastName->setText("unknown");
         }
     }
 }
@@ -656,3 +656,10 @@ void WishesWorkersWidget::closeEvent(QCloseEvent *event)
     }
 }
 
+void WishesWorkersWidget::slotShowNavigationButtons(bool showState)
+{
+    for (int i = 0; i < ui->p_layout_navigationButtons->count(); i++)
+    {
+        ui->p_layout_navigationButtons->itemAt(i)->widget()->setVisible(showState);
+    }
+}

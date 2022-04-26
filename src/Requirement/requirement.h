@@ -5,6 +5,7 @@
 #include "../../src/XML_Parsing/SingleRequirement.h"
 #include <QListWidget>
 #include <QSignalMapper>
+#include "../../src/XML_Parsing/Positions.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Requirement; }
@@ -29,14 +30,19 @@ private:
     int findLastIDInList();
     void openFile(const QString& filename);
 
+    void loadPositions();
+
 protected:
     void closeEvent(QCloseEvent *event) override;
 
 private:
     Ui::Requirement *ui;
 
+    Positions m_positions;
     Requirements m_requirements;
     QString m_currentEditRequirement;
+
+    QString m_pathPositionsInformation;
 
     QString m_filename;
     bool isModifiedFile = false;
@@ -58,5 +64,8 @@ public slots:
 
     void slotUpdateData(const QString&);
 
+    void slotSetPathPositionsInformation(const QString&);
+
+    void slotShowNavigationButtons(bool showState);
 };
 #endif // REQUIREMENT_H

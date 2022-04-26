@@ -230,6 +230,9 @@ void PositionsWidget::slotCreateNew()
 
 void PositionsWidget::openFile(const QString & filename)
 {
+    if (filename.isEmpty())
+        return;
+
     resetData();
     m_filename = filename;
 
@@ -390,5 +393,13 @@ void PositionsWidget::closeEvent(QCloseEvent *event)
     else
     {
         event->accept();
+    }
+}
+
+void PositionsWidget::slotShowNavigationButtons(bool showState)
+{
+    for (int i = 0; i < ui->p_layout_navigationButtons->count(); i++)
+    {
+        ui->p_layout_navigationButtons->itemAt(i)->widget()->setVisible(showState);
     }
 }
