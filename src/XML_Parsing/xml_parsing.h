@@ -16,6 +16,7 @@
 #include "SingleVacation.h"
 #include "SingleRequirement.h"
 #include "SingleWish.h"
+#include "Shifts.h"
 
 QDomElement makeElement(QDomDocument& doc, const QString &tagName, const QString &tagValue);
 
@@ -67,6 +68,13 @@ Wishes read_WishesFromFile(const QString& filename);
 
 extern "C"
 void write_WishesToFile(const QString& filename, const Wishes& info);
+
+/*******************************************************************************/
+extern "C"
+Shifts read_ShiftsFromFile(const QString& filename);
+
+extern "C"
+void write_ShiftsToFile(const QString& filename, const Shifts& info);
 
 
 #endif // XML_PARSING_H

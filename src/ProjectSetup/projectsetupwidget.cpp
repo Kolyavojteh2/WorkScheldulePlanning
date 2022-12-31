@@ -24,6 +24,7 @@ void ProjectSetupWidget::setupWidget()
             this, SLOT(slotSave()));
     connect(ui->p_button_SaveAs, SIGNAL(clicked()),
             this, SLOT(slotSaveAs()));
+
     // Modyfing file
     connect(ui->p_checkBox_RoundTheClockMode, SIGNAL(stateChanged(int)),
             this, SLOT(slotSpinBoxOrCheckBoxModified(int)));
@@ -39,6 +40,8 @@ void ProjectSetupWidget::setupWidget()
             this, SLOT(slotTimeModified(const QTime&)));
     connect(ui->p_timeEdit_StandartRestTime, SIGNAL(timeChanged(const QTime&)),
             this, SLOT(slotTimeModified(const QTime&)));
+    connect(ui->p_spinBox_MaxPercentOfWorkShiftToPeriod, SIGNAL(valueChanged(int)),
+            this, SLOT(slotSpinBoxOrCheckBoxModified(int)));
 
     // Enabling a time widgets
     connect(ui->p_checkBox_RoundTheClockMode, SIGNAL(stateChanged(int)),
@@ -92,6 +95,7 @@ ProjectSetup ProjectSetupWidget::getInformationFromForm()
     info.ClosingCorporation = ui->p_timeEdit_ClosingCorporation->time().toString();
     info.EveryMounthGraphic = ui->p_checkBox_EveryMounthGraphic->checkState();
     info.OpeningCorporation = ui->p_timeEdit_OpeningCorporation->time().toString();
+    info.MaxPercentOfWorkShiftToPeriod = ui->p_spinBox_MaxPercentOfWorkShiftToPeriod->value();
 
     return info;
 }
@@ -105,6 +109,7 @@ void ProjectSetupWidget::setInformationToForm(const ProjectSetup& info)
     ui->p_timeEdit_ClosingCorporation->setTime(QTime().fromString(info.ClosingCorporation));
     ui->p_checkBox_EveryMounthGraphic->setCheckState(static_cast<Qt::CheckState>(info.EveryMounthGraphic));
     ui->p_timeEdit_OpeningCorporation->setTime(QTime().fromString(info.OpeningCorporation));
+    ui->p_spinBox_MaxPercentOfWorkShiftToPeriod->setValue(info.MaxPercentOfWorkShiftToPeriod);
 
     ui->p_checkBox_RoundTheClockMode->setTristate(false);
     ui->p_checkBox_EveryMounthGraphic->setTristate(false);

@@ -3,6 +3,7 @@
 
 #include <QString>
 #include <QList>
+#include <QMap>
 
 class Worker
 {
@@ -35,5 +36,7 @@ public:
         return true;
     }
 };
+
+typedef QMap<QString, Worker> Workers;
 
 #endif // WORKER_H

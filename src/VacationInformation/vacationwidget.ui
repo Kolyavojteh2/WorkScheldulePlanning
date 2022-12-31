@@ -98,13 +98,6 @@
         </property>
        </widget>
       </item>
-      <item row="6" column="1">
-       <widget class="QDateEdit" name="p_dateEdit_EndDate">
-        <property name="wrapping">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
       <item row="1" column="1">
        <widget class="QLineEdit" name="p_line_ID_Worker"/>
       </item>
@@ -141,13 +134,6 @@
         </property>
        </spacer>
       </item>
-      <item row="5" column="1">
-       <widget class="QDateEdit" name="p_dateEdit_StartDate">
-        <property name="wrapping">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
       <item row="0" column="0">
        <widget class="QLabel" name="p_lbl_ID_Vacation">
         <property name="text">
@@ -157,6 +143,20 @@
       </item>
       <item row="0" column="1">
        <widget class="QLineEdit" name="p_line_ID_Vacation"/>
+      </item>
+      <item row="5" column="1">
+       <widget class="QDateTimeEdit" name="p_dateTimeEdit_StartDate">
+        <property name="wrapping">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="QDateTimeEdit" name="p_dateTimeEdit_EndDate">
+        <property name="wrapping">
+         <bool>true</bool>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -200,8 +200,8 @@
   <tabstop>p_line_Surname</tabstop>
   <tabstop>p_line_FirstName</tabstop>
   <tabstop>p_line_LastName</tabstop>
-  <tabstop>p_dateEdit_StartDate</tabstop>
-  <tabstop>p_dateEdit_EndDate</tabstop>
+  <tabstop>p_dateTimeEdit_StartDate</tabstop>
+  <tabstop>p_dateTimeEdit_EndDate</tabstop>
   <tabstop>p_list_Vacations</tabstop>
   <tabstop>p_button_AddVacation</tabstop>
   <tabstop>p_button_DeleteVacation</tabstop>

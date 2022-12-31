@@ -27,12 +27,17 @@ SOURCES += \
     RequirementInformation.cpp \
     VacationsInformation.cpp \
     WishesInformation.cpp \
+    WorkShiftInformation.cpp \
     WorkerInformation.cpp
 
 HEADERS += \
+    AssignedShift.h \
+    ConfigurationCreationProjectBasedExisting.h \
+    DurationsOfWorkShift.h \
     Positions.h \
     ProjectLocations.h \
     ProjectSetup.h \
+    Shifts.h \
     SingleRequirement.h \
     SingleVacation.h \
     SingleWish.h \

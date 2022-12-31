@@ -78,7 +78,7 @@ void WishesWorkersWidget::setupWidget()
     connect(ui->p_line_ID_worker, SIGNAL(textChanged(const QString&)),
             this, SLOT(slotChangedIDWorker(const QString&)));
 
-    // List of requirements
+    // List of wishes
     connect(ui->p_button_AddWishes, SIGNAL(clicked()),
             this, SLOT(slotAddWish()));
     connect(ui->p_button_DeleteWishes, SIGNAL(clicked()),

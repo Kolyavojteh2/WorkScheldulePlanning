@@ -17,13 +17,13 @@ void VacationWidget::setupWidget()
     validateData();
     slotCheckIDWorker();
 
-    ui->p_dateEdit_StartDate->setDate(QDate::currentDate());
-    ui->p_dateEdit_EndDate->setDate(QDate::currentDate());
+    ui->p_dateTimeEdit_StartDate->setDateTime(QDateTime(QDate::currentDate(), QTime(0,0,0)));
+    ui->p_dateTimeEdit_EndDate->setDateTime(QDateTime(QDate::currentDate().addDays(1), QTime(0, 0, 0)));
 
     ui->p_line_ID_Vacation->setEnabled(false);
     ui->p_line_ID_Worker->setEnabled(false);
-    ui->p_dateEdit_StartDate->setEnabled(false);
-    ui->p_dateEdit_EndDate->setEnabled(false);
+    ui->p_dateTimeEdit_StartDate->setEnabled(false);
+    ui->p_dateTimeEdit_EndDate->setEnabled(false);
 
     ui->p_line_Surname->setEnabled(false);
     ui->p_line_FirstName->setEnabled(false);
@@ -66,13 +66,13 @@ void VacationWidget::setupWidget()
             p_editingMapper, SLOT(map()));
     p_editingMapper->setMapping(ui->p_line_ID_Worker, "ID worker");
 
-    connect(ui->p_dateEdit_StartDate, SIGNAL(editingFinished()),
+    connect(ui->p_dateTimeEdit_StartDate, SIGNAL(editingFinished()),
             p_editingMapper, SLOT(map()));
-    p_editingMapper->setMapping(ui->p_dateEdit_StartDate, "StartDate");
+    p_editingMapper->setMapping(ui->p_dateTimeEdit_StartDate, "StartDate");
 
-    connect(ui->p_dateEdit_EndDate, SIGNAL(editingFinished()),
+    connect(ui->p_dateTimeEdit_EndDate, SIGNAL(editingFinished()),
             p_editingMapper, SLOT(map()));
-    p_editingMapper->setMapping(ui->p_dateEdit_EndDate, "EndDate");
+    p_editingMapper->setMapping(ui->p_dateTimeEdit_EndDate, "EndDate");
 
     // Modify file
     connect(ui->p_button_AddVacation, SIGNAL(clicked()),
@@ -81,9 +81,9 @@ void VacationWidget::setupWidget()
             this, SLOT(slotModifyFile()));
     connect(ui->p_line_ID_Worker, SIGNAL(editingFinished()),
             this, SLOT(slotModifyFile()));
-    connect(ui->p_dateEdit_StartDate, SIGNAL(editingFinished()),
+    connect(ui->p_dateTimeEdit_StartDate, SIGNAL(editingFinished()),
             this, SLOT(slotModifyFile()));
-    connect(ui->p_dateEdit_EndDate, SIGNAL(editingFinished()),
+    connect(ui->p_dateTimeEdit_EndDate, SIGNAL(editingFinished()),
             this, SLOT(slotModifyFile()));
 }
 
@@ -106,8 +106,8 @@ void VacationWidget::resetData()
 
     ui->p_line_ID_Vacation->setEnabled(false);
     ui->p_line_ID_Worker->setEnabled(false);
-    ui->p_dateEdit_StartDate->setEnabled(false);
-    ui->p_dateEdit_EndDate->setEnabled(false);
+    ui->p_dateTimeEdit_StartDate->setEnabled(false);
+    ui->p_dateTimeEdit_EndDate->setEnabled(false);
 
     ui->p_line_Surname->setEnabled(false);
     ui->p_line_FirstName->setEnabled(false);
@@ -115,8 +115,8 @@ void VacationWidget::resetData()
 
     ui->p_line_ID_Vacation->setText("");
     ui->p_line_ID_Worker->setText("");
-    ui->p_dateEdit_StartDate->setDate(QDate::currentDate());
-    ui->p_dateEdit_EndDate->setDate(QDate::currentDate());
+    ui->p_dateTimeEdit_StartDate->setDateTime(QDateTime(QDate::currentDate(), QTime(0,0,0)));
+    ui->p_dateTimeEdit_EndDate->setDateTime(QDateTime(QDate::currentDate().addDays(1), QTime(0,0,0)));
 }
 
 SingleVacation VacationWidget::getInformationFromForm()
@@ -125,8 +125,8 @@ SingleVacation VacationWidget::getInformationFromForm()
 
     info.ID_vacation = ui->p_line_ID_Vacation->text().toInt();
     info.ID_worker = ui->p_line_ID_Worker->text().toInt();
-    info.StartDate = ui->p_dateEdit_StartDate->date().toString();
-    info.EndDate = ui->p_dateEdit_EndDate->date().toString();
+    info.StartDate = ui->p_dateTimeEdit_StartDate->dateTime().toString();
+    info.EndDate = ui->p_dateTimeEdit_EndDate->dateTime().toString();
 
     return info;
 }
@@ -135,8 +135,8 @@ void VacationWidget::setInformationToForm(const SingleVacation& info)
 {
     ui->p_line_ID_Vacation->setText(QString::number(info.ID_vacation));
     ui->p_line_ID_Worker->setText(QString::number(info.ID_worker));
-    ui->p_dateEdit_StartDate->setDate(QDate::fromString(info.StartDate));
-    ui->p_dateEdit_EndDate->setDate(QDate::fromString(info.EndDate));
+    ui->p_dateTimeEdit_StartDate->setDate(QDate::fromString(info.StartDate));
+    ui->p_dateTimeEdit_EndDate->setDate(QDate::fromString(info.EndDate));
 }
 
 int VacationWidget::findLastIDInList()
@@ -162,8 +162,8 @@ void VacationWidget::slotAddVacation()
     SingleVacation single;
     single.ID_vacation = lastID;
     single.ID_worker = 0;
-    single.StartDate = QDate::currentDate().toString();
-    single.EndDate = QDate::currentDate().toString();
+    single.StartDate = QDateTime(QDate::currentDate(), QTime(0, 0, 0)).toString();
+    single.EndDate = QDateTime(QDate::currentDate().addDays(1), QTime(0, 0, 0)).toString();
 
     m_vacations.insert(item->text(), single);
 }
@@ -184,8 +184,8 @@ void VacationWidget::slotDeleteVacation()
 
         ui->p_line_ID_Vacation->setEnabled(false);
         ui->p_line_ID_Worker->setEnabled(false);
-        ui->p_dateEdit_StartDate->setEnabled(false);
-        ui->p_dateEdit_EndDate->setEnabled(false);
+        ui->p_dateTimeEdit_StartDate->setEnabled(false);
+        ui->p_dateTimeEdit_EndDate->setEnabled(false);
 
         ui->p_line_Surname->setEnabled(false);
         ui->p_line_FirstName->setEnabled(false);
@@ -193,8 +193,8 @@ void VacationWidget::slotDeleteVacation()
 
         ui->p_line_ID_Vacation->setText("");
         ui->p_line_ID_Worker->setText("");
-        ui->p_dateEdit_StartDate->setDate(QDate::currentDate());
-        ui->p_dateEdit_EndDate->setDate(QDate::currentDate());
+        ui->p_dateTimeEdit_StartDate->setDateTime(QDateTime(QDate::currentDate(), QTime(0, 0, 0)));
+        ui->p_dateTimeEdit_EndDate->setDateTime(QDateTime(QDate::currentDate().addDays(1), QTime(0, 0, 0)));
     }
 
     // Вказуємо що файл модифіковано
@@ -231,8 +231,8 @@ void VacationWidget::slotEditVacation(QListWidgetItem *item)
 
     ui->p_line_ID_Vacation->setEnabled(true);
     ui->p_line_ID_Worker->setEnabled(true);
-    ui->p_dateEdit_StartDate->setEnabled(true);
-    ui->p_dateEdit_EndDate->setEnabled(true);
+    ui->p_dateTimeEdit_StartDate->setEnabled(true);
+    ui->p_dateTimeEdit_EndDate->setEnabled(true);
 
     ui->p_line_Surname->setEnabled(true);
     ui->p_line_FirstName->setEnabled(true);
@@ -289,9 +289,9 @@ void VacationWidget::slotUpdateData(const QString& attributeName)
 
     if (attributeName == "StartDate" || attributeName == "EndDate")
     {
-        if (ui->p_dateEdit_StartDate->date() > ui->p_dateEdit_EndDate->date())
+        if (ui->p_dateTimeEdit_StartDate->dateTime() > ui->p_dateTimeEdit_EndDate->dateTime())
         {
-            ui->p_dateEdit_EndDate->setDate(ui->p_dateEdit_StartDate->date());
+            ui->p_dateTimeEdit_EndDate->setDateTime(ui->p_dateTimeEdit_StartDate->dateTime());
         }
     }
 

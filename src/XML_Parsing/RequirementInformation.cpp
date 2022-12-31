@@ -37,10 +37,12 @@ Requirements readRequirements(QDomDocument& doc)
             {
                 info_singleRequirement.NumberWorkers = elem_attribute.text().toInt();
             }
+            /*
             if (elem_attribute.tagName() == "Severity")
             {
                 info_singleRequirement.Severity = elem_attribute.text().toInt();
             }
+
             if (elem_attribute.tagName() == "BiggerAmountWorkers")
             {
                 info_singleRequirement.BiggerAmountWorkers = elem_attribute.text().toInt();
@@ -49,6 +51,7 @@ Requirements readRequirements(QDomDocument& doc)
             {
                 info_singleRequirement.Neglect = elem_attribute.text().toInt();
             }
+            */
 
             node_attribute = node_attribute.nextSibling();
         }
@@ -95,9 +98,9 @@ void write_RequirementsToFile(const QString& filename, const Requirements& info)
         singleRequirement.appendChild(makeElement(doc, "EndDate", it->EndDate));
         singleRequirement.appendChild(makeElement(doc, "Position", it->Position));
         singleRequirement.appendChild(makeElement(doc, "NumberWorkers", QString::number(it->NumberWorkers)));
-        singleRequirement.appendChild(makeElement(doc, "Severity", QString::number(it->Severity)));
-        singleRequirement.appendChild(makeElement(doc, "BiggerAmountWorkers", QString::number(it->BiggerAmountWorkers)));
-        singleRequirement.appendChild(makeElement(doc, "Neglect", QString::number(it->Neglect)));
+        //singleRequirement.appendChild(makeElement(doc, "Severity", QString::number(it->Severity)));
+        //singleRequirement.appendChild(makeElement(doc, "BiggerAmountWorkers", QString::number(it->BiggerAmountWorkers)));
+        //singleRequirement.appendChild(makeElement(doc, "Neglect", QString::number(it->Neglect)));
 
         rootElem.appendChild(singleRequirement);
     }

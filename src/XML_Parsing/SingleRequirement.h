@@ -12,9 +12,9 @@ public:
     QString EndDate;
     QString Position;
     int NumberWorkers;
-    int Severity;
-    int BiggerAmountWorkers;
-    int Neglect;
+    //int Severity;
+    //int BiggerAmountWorkers;
+    //int Neglect;
 };
 
 typedef QMap<QString, SingleRequirement> Requirements;

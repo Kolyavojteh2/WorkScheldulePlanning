@@ -55,7 +55,7 @@ void RequirementWidget::setupWidget()
     p_editingMapper->setMapping(ui->p_dateTimeEdit_EndDate, "EndDate");
 
     // Modify file
-    connect(ui->p_comboBox_Position, SIGNAL(currentIndexChanged(int)),
+    connect(ui->p_comboBox_Position, SIGNAL(activated(int)),
             this, SLOT(slotChangedPosition(int)));
     connect(ui->p_line_ID, SIGNAL(editingFinished()),
             this, SLOT(slotModifyFile()));
@@ -87,6 +87,9 @@ void RequirementWidget::setupWidget()
 
 void RequirementWidget::slotChangedPosition(int)
 {
+    if (ui->p_list_Requirements->count() == 0)
+        return;
+
     m_requirements[m_currentEditRequirement] = getInformationFromForm();
     slotModifyFile();
 }
@@ -173,6 +176,9 @@ int RequirementWidget::findLastIDInList()
 
 void RequirementWidget::slotAddRequirement()
 {
+    // BugFix: коли додавалась вимога, то атрибути які редагувались переносились на нову вимогу
+    ui->p_list_Requirements->setFocus();
+
     // Пошук останнього ID в списку і створення нового імені для нового ID
     int lastID = findLastIDInList() + 1;
     QString name = QString::number(lastID);
@@ -262,6 +268,9 @@ void RequirementWidget::slotModifyFile()
 
 void RequirementWidget::slotEditRequirement(QListWidgetItem *item)
 {
+    // BugFix: коли змінюється вимога, то атрибути які редагувались переносились на іншу вимогу
+    ui->p_list_Requirements->setFocus();
+
     // save data from form to memory
     if (m_currentEditRequirement != "")
     {

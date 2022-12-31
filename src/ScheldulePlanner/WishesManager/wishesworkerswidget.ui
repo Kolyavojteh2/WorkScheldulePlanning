@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>WishesWorkersWidget</class>
+ <widget class="QDialog" name="WishesWorkersWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>500</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>600</width>
+    <height>500</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>WishesWorkersWidget</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_3">
+   <item row="0" column="0">
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="title">
+      <string>Worker</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="1" column="0">
+       <widget class="QLabel" name="p_lbl_Surname">
+        <property name="text">
+         <string>Surname</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="p_lbl_FirstName">
+        <property name="text">
+         <string>FirstName</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="p_line_ID_worker"/>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="p_line_Surname">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="p_lbl_ID_worker">
+        <property name="text">
+         <string>ID worker</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="p_lbl_LastName">
+        <property name="text">
+         <string>LastName</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="p_line_FirstName">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLineEdit" name="p_line_LastName">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="1" rowspan="2">
+    <widget class="QGroupBox" name="groupBox_3">
+     <property name="title">
+      <string>Single wish</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="p_line_ID_wishes"/>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="p_lbl_Position">
+        <property name="text">
+         <string>Position</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QPlainTextEdit" name="p_TextEdit_Addition"/>
+      </item>
+      <item row="1" column="1">
+       <widget class="QDateTimeEdit" name="p_dateTimeEdit_StartDate">
+        <property name="wrapping">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="p_lbl_ID_wishes">
+        <property name="text">
+         <string>ID wishes</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QDateTimeEdit" name="p_dateTimeEdit_EndDate">
+        <property name="wrapping">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QComboBox" name="p_comboBox_Position"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="p_lbl_StartDate">
+        <property name="text">
+         <string>Start date</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="p_lbl_Addition">
+        <property name="text">
+         <string>Addition</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="p_lbl_EndDate">
+        <property name="text">
+         <string>EndDate</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0" colspan="2">
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>List of wishes</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QListWidget" name="p_list_Wishes"/>
+      </item>
+      <item>
+       <widget class="QPushButton" name="p_button_AddWishes">
+        <property name="focusPolicy">
+         <enum>Qt::NoFocus</enum>
+        </property>
+        <property name="text">
+         <string>Add</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="p_button_DeleteWishes">
+        <property name="focusPolicy">
+         <enum>Qt::NoFocus</enum>
+        </property>
+        <property name="text">
+         <string>Delete</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="2">
+    <layout class="QHBoxLayout" name="p_layout_navigationButtons">
+     <item>
+      <widget class="QPushButton" name="p_button_Save">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="text">
+        <string>Save</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>p_line_ID_worker</tabstop>
+  <tabstop>p_line_Surname</tabstop>
+  <tabstop>p_line_FirstName</tabstop>
+  <tabstop>p_line_LastName</tabstop>
+  <tabstop>p_line_ID_wishes</tabstop>
+  <tabstop>p_dateTimeEdit_StartDate</tabstop>
+  <tabstop>p_dateTimeEdit_EndDate</tabstop>
+  <tabstop>p_comboBox_Position</tabstop>
+  <tabstop>p_TextEdit_Addition</tabstop>
+  <tabstop>p_list_Wishes</tabstop>
+  <tabstop>p_button_AddWishes</tabstop>
+  <tabstop>p_button_DeleteWishes</tabstop>
+  <tabstop>p_button_Save</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

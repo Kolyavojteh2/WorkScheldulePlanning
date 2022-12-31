@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>FindAssignedShifts</class>
+ <widget class="QDialog" name="FindAssignedShifts">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>987</width>
+    <height>601</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <item>
+    <widget class="QGroupBox" name="p_groupBox_AssignedShiftsData">
+     <property name="title">
+      <string>Wishes data</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="p_lbl_WorkerID">
+        <property name="text">
+         <string>Worker ID</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="p_lbl_Surname">
+        <property name="text">
+         <string>Surname</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="p_line_Surname">
+        <property name="placeholderText">
+         <string>*</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="p_lbl_FirstName">
+        <property name="text">
+         <string>First name</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="p_line_FirstName">
+        <property name="placeholderText">
+         <string>*</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="p_lbl_LastName">
+        <property name="text">
+         <string>Last name</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLineEdit" name="p_line_LastName">
+        <property name="placeholderText">
+         <string>*</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="p_lbl_Position">
+        <property name="text">
+         <string>Position</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QComboBox" name="p_comboBox_Positions"/>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="p_lbl_StartDate">
+        <property name="text">
+         <string>Start date</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QDateTimeEdit" name="p_dateTimeEdit_StartDate"/>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="p_lbl_EndDate">
+        <property name="text">
+         <string>End date</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="QDateTimeEdit" name="p_dateTimeEdit_EndDate"/>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="p_line_WorkerID">
+        <property name="placeholderText">
+         <string>*</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="p_groupBox_Result">
+     <property name="title">
+      <string/>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QTreeWidget" name="p_treeWidget_Wishes">
+        <column>
+         <property name="text">
+          <string>Shift ID</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Worker ID</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Surname</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>First name</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Last name</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Position</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Start date</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>End date</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

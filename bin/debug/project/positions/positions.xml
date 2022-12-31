@@ -1,13 +1,28 @@
 <!DOCTYPE Positions>
 <Positions>
  <SinglePosition>
-  <Brief>MDS</Brief>
-  <FullName>dasfgfn</FullName>
-  <Description>dsfdg</Description>
+  <Brief>BOP</Brief>
+  <FullName/>
+  <Description/>
  </SinglePosition>
  <SinglePosition>
   <Brief>DVS</Brief>
   <FullName>asdasd</FullName>
   <Description>aaaaa</Description>
+ </SinglePosition>
+ <SinglePosition>
+  <Brief>KIT</Brief>
+  <FullName/>
+  <Description/>
+ </SinglePosition>
+ <SinglePosition>
+  <Brief>MDS</Brief>
+  <FullName>dasfgfn</FullName>
+  <Description>dsfdg</Description>
+ </SinglePosition>
+ <SinglePosition>
+  <Brief>SER</Brief>
+  <FullName/>
+  <Description/>
  </SinglePosition>
 </Positions>
